@@ -32,8 +32,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsSuperAdmin(false);
       return;
     }
+    // Turn any pending staff invitation for this (confirmed) email into a membership.
+    await supabase.rpc('claim_invites');
     const [m, a] = await Promise.all([
-      supabase.from('restaurant_members').select('role, restaurants(id, slug, name, status)').eq('user_id', s.user.id),
+      supabase
+        .from('restaurant_members')
+        .select('role, restaurants(id, slug, name, status)')
+        .eq('user_id', s.user.id)
+        .order('created_at', { ascending: true }),
       supabase.rpc('is_super_admin'),
     ]);
     const rows = (m.data ?? []) as unknown as RawMembership[];

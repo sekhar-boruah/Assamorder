@@ -7,6 +7,7 @@ import Onboarding from './pages/Onboarding';
 import Overview from './pages/Overview';
 import Register from './pages/Register';
 import Settings from './pages/Settings';
+import Team from './pages/Team';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/dashboard" element={<Overview />} />
             <Route element={<RequireManager />}>
               <Route path="/dashboard/branding" element={<Branding />} />
+              <Route path="/dashboard/team" element={<Team />} />
               <Route path="/dashboard/settings" element={<Settings />} />
             </Route>
           </Route>
