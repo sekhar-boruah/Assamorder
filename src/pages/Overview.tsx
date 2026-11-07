@@ -45,7 +45,9 @@ export default function Overview() {
         <span className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${status.tone}`}>{status.label}</span>
         <p className="mt-3 text-stone-700">{status.message}</p>
         {daysLeft !== null && <p className="mt-2 text-sm text-stone-500">Free trial: {daysLeft} day{daysLeft === 1 ? '' : 's'} left</p>}
-        <p className="mt-2 text-sm text-stone-500">Public page: assamorder.in/r/{restaurant.slug}</p>
+        <a href={`/r/${restaurant.slug}`} target="_blank" rel="noreferrer" className="mt-3 inline-block text-sm font-semibold text-amber-700 hover:underline">
+          Open your public page (/r/{restaurant.slug})
+        </a>
       </Card>
     </>
   );

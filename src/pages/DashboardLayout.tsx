@@ -10,6 +10,7 @@ export default function DashboardLayout() {
   const links = [
     { to: '/dashboard', label: 'Overview', end: true, show: true },
     { to: '/dashboard/menu', label: 'Menu', end: false, show: canManage },
+    { to: '/dashboard/tables', label: 'Tables', end: false, show: canManage },
     { to: '/dashboard/branding', label: 'Branding', end: false, show: canManage },
     { to: '/dashboard/team', label: 'Team', end: false, show: canManage },
     { to: '/dashboard/settings', label: 'Settings', end: false, show: canManage },

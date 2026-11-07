@@ -10,19 +10,29 @@ import Onboarding from './pages/Onboarding';
 import Overview from './pages/Overview';
 import Register from './pages/Register';
 import Settings from './pages/Settings';
+import Tables from './pages/Tables';
+import TablesPrint from './pages/TablesPrint';
+import RestaurantPage from './pages/public/RestaurantPage';
+import TableRedirect from './pages/public/TableRedirect';
 import Team from './pages/Team';
 
 export default function App() {
   return (
     <Routes>
+      <Route path="/r/:slug" element={<RestaurantPage />} />
+      <Route path="/t/:token" element={<TableRedirect />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route element={<RequireAuth />}>
         <Route path="/onboarding" element={<Onboarding />} />
         <Route element={<RequireRestaurant />}>
+          <Route element={<RequireManager />}>
+            <Route path="/dashboard/tables/print" element={<TablesPrint />} />
+          </Route>
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Overview />} />
             <Route element={<RequireManager />}>
+              <Route path="/dashboard/tables" element={<Tables />} />
               <Route path="/dashboard/menu" element={<Menu />} />
               <Route path="/dashboard/menu/category/:id" element={<CategoryEdit />} />
               <Route path="/dashboard/menu/item/:id" element={<ItemEdit />} />
