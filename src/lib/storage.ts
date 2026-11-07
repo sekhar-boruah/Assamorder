@@ -8,7 +8,7 @@ export function assetUrl(path: string | null): string | null {
 }
 
 /** Files live under <restaurant_id>/ so storage policies can enforce tenant isolation. */
-export async function uploadRestaurantImage(restaurantId: string, kind: 'logo' | 'cover', blob: Blob): Promise<string> {
+export async function uploadRestaurantImage(restaurantId: string, kind: 'logo' | 'cover' | 'item', blob: Blob): Promise<string> {
   const path = `${restaurantId}/${kind}-${Date.now()}.webp`;
   const { error } = await supabase.storage.from(BUCKET).upload(path, blob, {
     contentType: 'image/webp',

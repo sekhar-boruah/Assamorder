@@ -40,3 +40,6 @@ export interface RestaurantSettings {
   accepts_dine_in: boolean;
   accepts_takeaway: boolean;
 }
+
+export type Lang = 'en' | 'as' | 'hi';
+export type I18n = Record<Lang, string>;
